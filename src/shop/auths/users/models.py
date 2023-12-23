@@ -84,6 +84,25 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
 
+class Profile(models.Model):
+    GENDER = (
+        ('M', 'male'),
+        ('F', 'female'),
+    )
+    first_name = models.CharField(max_length=120, blank=True, null=True)
+    last_name = models.CharField(max_length=120, blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile_user', blank=True, null=True)
+    gender = models.CharField(max_length=1, choices=GENDER, blank=True, null=True)
+    age = models.SmallIntegerField(_('age'), default=10, blank=True, null=True)
+    birthday = models.DateField(_('birthday'), blank=True, null=True)
+    phon_number = models.CharField(_('Mobile Number'), max_length=13, validators=[IranianMobileNumberValidator()], blank=True, null=True)
+    bio = models.TextField(_('bio'), blank=True, null=True)
+    address = models.CharField(_('address'), max_length=255, blank=True, null=True)
+    zip_code = models.CharField(max_length=5, validators=[MinLengthValidator(5)], blank=False)
+    balance = models.BigIntegerField(_('balance'), default=0)
+
+    def __str__(self):
+        return str(self.id)
 
 
 
