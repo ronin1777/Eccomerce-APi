@@ -40,4 +40,15 @@ class WishList(models.Model):
         self.save()
 
 
+class WishlistItem(models.Model):
+    wishlist = models.ForeignKey(WishList, on_delete=models.CASCADE, related_name='wishlists')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='wishlist_product')
 
+    def save(self, **kwargs):
+        existing_items = WishlistItem.objects.filter(wishlist=self.wishlist, product=self.product,)
+
+        if existing_items.exists() and self.pk is None:
+            # Product already exists in wishlist, so raise an error
+            raise ValidationError(_("This product is already in your wishlist."))
+
+        super().save(**kwargs)
