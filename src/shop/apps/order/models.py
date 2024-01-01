@@ -29,7 +29,7 @@ class Order(models.Model):
     def __str__(self):
         return str(self.id)
     @property
-    def get_total_cost(self):
+    def total_cost(self):
         total = sum(item.get_cost() for item in self.items.all())
         if self.discount:
             discount_price = (self.discount / 100) * total

@@ -7,7 +7,7 @@ from shop.apps.order.serializers import OrderItemSerializer
 
 from shop.apps.order.permisions import IsOrderPending, IsOrderByBuyerOrAdmin, IsOrderItemPending, \
     IsOrderItemByBuyerOrAdmin
-from shop.apps.order.serializers import OrderWriteSerializer
+from shop.apps.order.serializers import OrderWriteSerializer, OrderReadSerializer
 
 
 class OrderItemViewSet(viewsets.ModelViewSet):

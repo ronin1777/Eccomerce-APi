@@ -44,16 +44,16 @@ class OrderWriteSerializer(serializers.ModelSerializer):
         model = Order
         fields = (
             "id",
-            "buyer",
-            "status",
-            "order_items",
-            "created_at",
-            "updated_at",
+            "user",
+            "payment_method",
+            "address",
+            'discount',
+            'paid'
         )
-        read_only_fields = ("status",)
+        read_only_fields = ("discount",'paid')
 
     def create(self, validated_data):
-        orders_data = validated_data.pop("order_items")
+        orders_data = validated_data.pop("items")
         order = Order.objects.create(**validated_data)
 
         for order_data in orders_data:
@@ -62,8 +62,8 @@ class OrderWriteSerializer(serializers.ModelSerializer):
         return order
 
     def update(self, instance, validated_data):
-        orders_data = validated_data.pop("order_items", None)
-        orders = list((instance.order_items).all())
+        orders_data = validated_data.pop("items", None)
+        orders = list((instance.items).all())
 
         if orders_data:
             for order_data in orders_data:
@@ -73,5 +73,22 @@ class OrderWriteSerializer(serializers.ModelSerializer):
                 order.save()
 
         return instance
+
+
+class OrderReadSerializer(serializers.ModelSerializer):
+    """
+    Serializer class for reading orders
+    """
+
+    user = serializers.CharField(source="user", read_only=True)
+    order_items = OrderItemSerializer(read_only=True, many=True)
+    total_cost = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+    def get_total_cost(self, obj):
+        return obj.total_cost
 
 
