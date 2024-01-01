@@ -16,6 +16,14 @@ class Location(models.Model):
 
 
 class Order(models.Model):
+    ORDER_STATUSES = (
+        (1, 'New'),
+        (2, 'Processing'),
+        (3, 'Ready to ship'),
+        (4, 'Shipped'),
+        (5, 'Delivered'),
+        (6, 'Canceled')
+    )
     payment_methods = (('Card', 'Card'), ('Pay On Delivery', 'Pay On Delivery'),
                        ('Bank Transfer', 'Bank Transfer'))
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
