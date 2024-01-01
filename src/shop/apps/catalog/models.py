@@ -149,6 +149,23 @@ class Product(AuditableModel):
         if self.parent_id:
             raise ValidationError(_("Only child products can have a parent."))
 
+    def _clean_child(self):
+        """
+        Validates a child product
+        """
+        if not self.parent_id:
+            raise ValidationError(_("A child product needs a parent."))
+        if self.parent_id and not self.parent.is_parent:
+            raise ValidationError(
+                _("You can only assign child products to parent products.")
+            )
+        if self.product_class:
+            raise ValidationError(_("A child product can't have a product class."))
+        if self.pk and self.categories.exists():
+            raise ValidationError(_("A child product can't have a category assigned."))
+        if self.pk and self.product_options.exists():
+            raise ValidationError(_("A child product can't have options."))
+
 
     @property
     def main_image(self):
