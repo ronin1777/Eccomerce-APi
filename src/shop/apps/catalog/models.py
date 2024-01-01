@@ -115,13 +115,26 @@ class Option(models.Model):
         verbose_name = "Option"
         verbose_name_plural = "Option"
 
+class AvailabilityStatuses:
+    in_stock = (1, 'in stock')
+    awaiting_arrival = (2, 'awaiting arrival')
+    low_in_stock = (3, 'low in stock')
+    out_of_stock = (4, 'out of stock')
+
 
 class Product(AuditableModel):
+    AVAILABILITY_STATUSES = (
+        AvailabilityStatuses.in_stock,
+        AvailabilityStatuses.awaiting_arrival,
+        AvailabilityStatuses.low_in_stock,
+        AvailabilityStatuses.out_of_stock
+    )
     class ProductTypeChoice(models.TextChoices):
         standalone = 'standalone'
         parent = 'parent'
         child = 'child'
 
+    availability_status = models.IntegerField(default=1, choices=AVAILABILITY_STATUSES)
     structure = models.CharField(max_length=16, choices=ProductTypeChoice.choices, default=ProductTypeChoice.standalone)
     parent = models.ForeignKey("self", related_name="children", on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=128, null=True, blank=True)

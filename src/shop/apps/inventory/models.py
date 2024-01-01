@@ -9,4 +9,5 @@ class StockRecord(models.Model):
     buy_price = models.PositiveBigIntegerField(null=True, blank=True)
     sale_price = models.PositiveBigIntegerField()
     num_stock = models.PositiveIntegerField(default=0)
+    quantity_sold = models.PositiveIntegerField(default=0)
     threshold_low_stack = models.PositiveIntegerField(null=True, blank=True)

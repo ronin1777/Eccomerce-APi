@@ -49,6 +49,7 @@ urlpatterns = [
     path('ratings/', include('shop.apps.rates.urls', namespace='rating')),
     path('wishlist/', include('shop.apps.wishlist.urls', namespace='wishlist')),
     path('orders/', include('shop.apps.order.urls', namespace='orders')),
+    path('cart/', include('shop.apps.cart.urls', namespace='cart')),
 ] + front_urls + admin_urls + doc_patterns
 
 
