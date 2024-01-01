@@ -131,6 +131,8 @@ class Product(AuditableModel):
     meta_description = models.TextField(null=True, blank=True)
     rating = GenericRelation(Rating)
     slug = models.SlugField(unique=True, allow_unicode=True)
+    price = models.IntegerField()
+
 
     product_class = models.ForeignKey(ProductClass, on_delete=models.PROTECT, null=True, blank=True,
                                       related_name='products')
