@@ -27,7 +27,7 @@ def get_or_create_basket(request, user):
     basket.clear()
 
 
-class CArtAPIView(BasketMixin, APIView):
+class CartAPIView(BasketMixin, APIView):
     permission_classes = [AllowAny]
 
     def get(self, *args, **kwargs):
