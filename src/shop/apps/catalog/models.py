@@ -5,6 +5,8 @@ from treebeard.mp_tree import MP_Node
 from shop.apps.catalog.manager import CategoryQuerySet
 from shop.libs.db.fields import UpperCaseCharField
 from shop.libs.db.model import AuditableModel
+from django.utils.translation import gettext_lazy as _
+
 
 
 # Create your models here.
@@ -121,7 +123,7 @@ class Product(AuditableModel):
     structure = models.CharField(max_length=16, choices=ProductTypeChoice.choices, default=ProductTypeChoice.standalone)
     parent = models.ForeignKey("self", related_name="children", on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=128, null=True, blank=True)
-    upc = UpperCaseCharField(max_length=24, unique=True, null=True, blank=True)
+    upc = UpperCaseCharField(max_length=24, unique=True, null=True, blank=True, help_text=_())
     is_public = models.BooleanField(default=True)
     meta_title = models.CharField(max_length=128, null=True, blank=True)
     meta_description = models.TextField(null=True, blank=True)
@@ -133,6 +135,8 @@ class Product(AuditableModel):
     attributes = models.ManyToManyField(ProductAttribute, through='ProductAttributeValue')
     recommended_products = models.ManyToManyField('catalog.Product', through='ProductRecommendation', blank=True)
     categories = models.ManyToManyField(Category, related_name='categories')
+    product_options = models.ManyToManyField(Option, blank=True)
+
 
     @property
     def main_image(self):
@@ -152,6 +156,10 @@ class Product(AuditableModel):
     class Meta:
         verbose_name = "Product"
         verbose_name_plural = "Products"
+
+    @property
+    def num_stockrecords(self):
+        return self.stock_records.count()
 
 
 class ProductAttributeValue(models.Model):
