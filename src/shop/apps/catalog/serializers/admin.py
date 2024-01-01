@@ -5,6 +5,8 @@ from rest_framework.generics import get_object_or_404
 
 from shop.apps.catalog.models import Category
 
+from src.shop.apps.catalog.models import Product
+
 
 class CreateCategoryNodeSerializer(serializers.ModelSerializer):
     parent = serializers.IntegerField(required=False)
@@ -49,4 +51,36 @@ class CategoryModificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ('id', 'title', 'description', 'is_public')
+
+
+class ProductSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
