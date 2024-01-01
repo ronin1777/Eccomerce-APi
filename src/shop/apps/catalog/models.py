@@ -166,6 +166,14 @@ class Product(AuditableModel):
         if self.pk and self.product_options.exists():
             raise ValidationError(_("A child product can't have options."))
 
+    def _clean_parent(self):
+        """
+        Validates a parent product.
+        """
+        self._clean_standalone()
+        if self.has_stockrecords:
+            raise ValidationError(_("A parent product can't have stockrecords."))
+
 
     @property
     def main_image(self):
@@ -189,6 +197,15 @@ class Product(AuditableModel):
     @property
     def num_stockrecords(self):
         return self.stock_records.count()
+
+    @property
+    def has_stockrecords(self):
+        """
+        Test if this product has any stockrecords
+        """
+        if self.id:
+            return self.stock_records.exists()
+        return False
 
 
 class ProductAttributeValue(models.Model):
