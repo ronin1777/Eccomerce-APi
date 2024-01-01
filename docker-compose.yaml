@@ -1,0 +1,61 @@
+version: '3.3'
+
+services:
+  redis:
+    image: redis:7.2-alpine3.18
+    networks:
+      - main
+
+  db:
+    container_name: postgres
+    image: postgres:16
+    environment:
+      - POSTGRES_DB=shop
+      - POSTGRES_USER=comiser
+      - POSTGRES_PASSWORD=Hosein67
+    networks:
+      - main
+    ports:
+      - "5432:5432"
+    restart: always
+    volumes:
+      - shop-data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    container_name: app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/src
+      - ./data/web:/vol/web
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - main
+
+  celery:
+    container_name: celery
+    command: celery -A shop worker -l INFO
+    depends_on:
+      - db
+      - app
+      - redis
+    links:
+      - redis
+    build:
+      context: .
+    networks:
+      - main
+
+
+networks:
+  main:
+
+volumes:
+  shop-data:
