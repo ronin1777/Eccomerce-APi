@@ -17,3 +17,12 @@ def update_product_availability_status_pre_save(sender, instance, **kwargs):
         if old_instance.num_stock != instance.num_stock:
             # Update product status based on quantity in stock
             check_quantity_and_set_status(instance)
+
+@receiver(post_save, sender=StockRecord)
+def update_product_availability_status(sender, instance, created, **kwargs):
+    if instance.pk:
+        num = StockRecord.objects.get(pk=instance.pk)
+        if num.num_stock <= 5:
+            #Todo send mail
+
+
