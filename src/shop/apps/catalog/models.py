@@ -6,6 +6,8 @@ from shop.apps.catalog.manager import CategoryQuerySet
 from shop.libs.db.fields import UpperCaseCharField
 from shop.libs.db.model import AuditableModel
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
+
 
 
 
@@ -136,6 +138,16 @@ class Product(AuditableModel):
     recommended_products = models.ManyToManyField('catalog.Product', through='ProductRecommendation', blank=True)
     categories = models.ManyToManyField(Category, related_name='categories')
     product_options = models.ManyToManyField(Option, blank=True)
+
+
+    def _clean_standalone(self):
+        """
+        Validates a stand-alone product
+        """
+        if not self.product_class:
+            raise ValidationError(_("Your product must have a product class."))
+        if self.parent_id:
+            raise ValidationError(_("Only child products can have a parent."))
 
 
     @property
