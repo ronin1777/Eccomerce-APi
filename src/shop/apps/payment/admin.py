@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from shop.apps.payment.models import Payment
+
+admin.site.register(Payment)
