@@ -26,4 +26,4 @@ class Order(models.Model):
     discount = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return self.product.name + " - " + str(self.quantity)
+        return str(self.id)
