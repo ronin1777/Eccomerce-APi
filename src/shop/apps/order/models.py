@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from shop.apps.catalog.models import Product
 
 from shop.auths.users.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Location(models.Model):
@@ -27,7 +28,7 @@ class Order(models.Model):
 
     def __str__(self):
         return str(self.id)
-
+    @property
     def get_total_cost(self):
         total = sum(item.get_cost() for item in self.items.all())
         if self.discount:
@@ -50,7 +51,15 @@ class OrderItem(models.Model):
     def get_cost(self):
         return self.price * self.quantity
 
+class Coupon(models.Model):
+    code = models.CharField(max_length=30, unique=True)
+    valid_from = models.DateTimeField()
+    valid_to = models.DateTimeField()
+    discount = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(90)])
+    active = models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.code
 
 
 
