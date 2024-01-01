@@ -31,3 +31,36 @@ class CartItemsSerializer(serializers.ModelSerializer):
         return serializer_product.data['title']
 
 
+class SessionBasketSerializer(serializers.Serializer):
+
+    def to_representation(self, instance):
+        items = []
+        for item in instance:
+            item_data = item.copy()
+            item_data['product_title'] = item_data.get('product').title
+            item_data['product'] = item_data.pop('product').id
+            items.append(item_data)
+        return {'items': items}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
