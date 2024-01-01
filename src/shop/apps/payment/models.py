@@ -16,13 +16,12 @@ class Payment(models.Model):
     )
 
     # Payment options
-    Card = "C"
-    PAY_AT_LOCATION = "P"
 
-    PAYMENT_CHOICES = ((Card, _("card")), (PAY_AT_LOCATION, _("pay_at_location")))
+    payment_methods = (('Card', 'Card'), ('Pay On Delivery', 'Pay On Delivery'),
+                       ('Bank Transfer', 'Bank Transfer'))
 
     status = models.CharField(max_length=1, choices=STATUS_CHOICES, default=PENDING)
-    payment_option = models.CharField(max_length=1, choices=PAYMENT_CHOICES)
+    payment_option = models.CharField(max_length=1, choices=payment_methods)
     order = models.OneToOneField(
         Order, related_name="payment", on_delete=models.CASCADE
     )
