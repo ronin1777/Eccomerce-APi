@@ -5,6 +5,10 @@ from shop.apps.order.models import OrderItem, Order
 
 from shop.apps.order.serializers import OrderItemSerializer
 
+from shop.apps.order.permisions import IsOrderPending, IsOrderByBuyerOrAdmin, IsOrderItemPending, \
+    IsOrderItemByBuyerOrAdmin
+from shop.apps.order.serializers import OrderWriteSerializer
+
 
 class OrderItemViewSet(viewsets.ModelViewSet):
     """
@@ -13,6 +17,7 @@ class OrderItemViewSet(viewsets.ModelViewSet):
 
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
+    permission_classes = [IsOrderItemByBuyerOrAdmin]
 
     def get_queryset(self):
         res = super().get_queryset()
@@ -22,5 +27,37 @@ class OrderItemViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         order = get_object_or_404(Order, id=self.kwargs.get("order_id"))
         serializer.save(order=order)
+
+    def get_permissions(self):
+        if self.action in ("create", "update", "partial_update", "destroy"):
+            self.permission_classes += [IsOrderItemPending]
+
+        return super().get_permissions()
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    """
+    CRUD orders of a user
+    """
+
+    queryset = Order.objects.all()
+    permission_classes = [IsOrderByBuyerOrAdmin]
+
+    def get_serializer_class(self):
+        if self.action in ("create", "update", "partial_update", "destroy"):
+            return OrderWriteSerializer
+
+        return OrderReadSerializer
+
+    def get_queryset(self):
+        res = super().get_queryset()
+        user = self.request.user
+        return res.filter(buyer=user)
+
+    def get_permissions(self):
+        if self.action in ("update", "partial_update", "destroy"):
+            self.permission_classes += [IsOrderPending]
+
+        return super().get_permissions()
 
 
