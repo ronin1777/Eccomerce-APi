@@ -26,6 +26,9 @@ class Order(models.Model):
     )
     payment_methods = (('Card', 'Card'), ('Pay On Delivery', 'Pay On Delivery'),
                        ('Bank Transfer', 'Bank Transfer'))
+    order_status = models.IntegerField(verbose_name='Order status',
+                                       choices=ORDER_STATUSES,
+                                       default=1)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     paid = models.BooleanField(default=False)
     payment_method = models.CharField(_('payment method'), max_length=250, choices=payment_methods)
