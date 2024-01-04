@@ -50,7 +50,7 @@ git clone https://github.com/ronin1777/Eccomerce-APi.git
   # Load the site at http://127.0.0.1:8000
   ```
   ### dokcer
-  First in project root Create a file named scripts and inside it create a file named run.sh with the same content
+  First in project root Create a file named scripts and inside it create a file named run.sh with the same content:
 ```
 #!/bin/sh
 
@@ -78,5 +78,5 @@ If you want to use Docker, follow these steps:
   > 2. Host: 0.0.0.0
   > 3. python interpereter: select Remote python Docker compose(that environment you created it)
 > [!NOTE]
-> before run docker you must add some file in project root. create a directory with name scripts and create a file with name run.sh
+> before run docker you have to create run file
 
