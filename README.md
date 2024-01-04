@@ -57,9 +57,9 @@ git clone https://github.com/ronin1777/Eccomerce-APi.git
 If you want to use Docker, follow these steps:
 * Add environment variables:
   > 1. server: docker
-  2. configuration files: select docker-compose file
-  3. sevice: select app
-  4. Next and create
+  > 2. configuration files: select docker-compose file
+  > 3. sevice: select app
+  > 4. Next and create
 * Enavle Django support(pycharm):
   1. go to Languages & Frameworks and select Django
   2. Django project root: select crs as root
