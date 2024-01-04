@@ -52,12 +52,13 @@ git clone https://github.com/ronin1777/Eccomerce-APi.git
   ### dokcer
   First in project root Create a file named scripts and inside it create a file named run.sh with the same content
   ‍‍‍‍```bash
-  #!/bin/sh
-
-  python manage.py makemigrations
-  python manage.py migrate
-  python manage.py runserver 0.0.0.0:8000
+   #!/bin/sh
+ 
+   python manage.py makemigrations
+   python manage.py migrate
+   python manage.py runserver 0.0.0.0:8000
   ```
+then run docker-compose
   ```
   docker-compose up -d --build
   ```
