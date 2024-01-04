@@ -17,7 +17,7 @@ This is an e-commerce API built using Django REST Framework (DRF). It allows you
 # Features
 * Django 4.2 & Python 3.11
 * Install via Pip or Docker
-* Implement entity value 
+* Implement Entity Attribute Value model(EAV) 
 * Authentication via JWT
 * Media storage using Amazon S3
 * Create Multiple Wishlists
@@ -28,7 +28,6 @@ This is an e-commerce API built using Django REST Framework (DRF). It allows you
 * Postgres
 * JWT
 * Django Rest Framework
-* Redis
 * docker
 # Installation
 Eccomerce-APi can be installed via Pip or Docker. To start, clone the repo to your local computer and change into the proper directory.
@@ -80,5 +79,5 @@ If you want to use Docker, follow these steps:
   > 2. Host: 0.0.0.0
   > 3. python interpereter: select Remote python Docker compose(that environment you created it)
 > [!NOTE]
-> before run docker you have to create run file
+> Django support Available only in PyCharm Professional 
 
