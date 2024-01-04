@@ -31,14 +31,13 @@ This is an e-commerce API built using Django REST Framework (DRF). It allows you
 # Installation
 Eccomerce-APi can be installed via Pip or Docker. To start, clone the repo to your local computer and change into the proper directory.
 ```
-git clone ...
+git clone https://github.com/ronin1777/Eccomerce-APi.git
 ```
   ### pip
   ```
   python -m venv .venv
   # Windows
-  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-  .venv\Scripts\Activate.ps1
+  .venv\Scripts\Activate
   
   macOS
   source .venv/bin/activate
@@ -50,4 +49,6 @@ git clone ...
   # Load the site at http://127.0.0.1:8000
   ```
   ### dokcer
-
+  ```
+  docker-compose up -d --build
+  ```
