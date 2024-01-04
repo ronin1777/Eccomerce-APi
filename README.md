@@ -68,4 +68,6 @@ If you want to use Docker, follow these steps:
   > 1. edit configuration add Djnago server
   > 2. Host: 0.0.0.0
   > 3. python interpereter: select Remote python Docker compose(that environment you created it)
+> [!NOTE]
+> before run docker you must add some file.
 
