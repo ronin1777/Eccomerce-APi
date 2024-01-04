@@ -28,6 +28,6 @@ This is an e-commerce API built using Django REST Framework (DRF). It allows you
 * Redis
 * docker
 # Installation
-  # pip
-  # dokcer
+  ### pip
+  ### dokcer
 
