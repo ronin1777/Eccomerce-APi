@@ -17,10 +17,11 @@ This is an e-commerce API built using Django REST Framework (DRF). It allows you
 # Features
 * Django 4.2 & Python 3.11
 * Install via Pip or Docker
+* Implement entity value 
 * Authentication via JWT
 * Media storage using Amazon S3
-* create Multiple Wishlists
-* 
+* Create Multiple Wishlists
+* Rating for product
 
 # technology
 * Celery
