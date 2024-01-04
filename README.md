@@ -70,7 +70,7 @@ If you want to use Docker, follow these steps:
   > 2. configuration files: select docker-compose file
   > 3. sevice: select app
   > 4. Next and create
-* Enavle Django support(pycharm):
+* Enable Django support(pycharm):
   > 1. go to Languages & Frameworks and select Django
   > 2. Django project root: select crs as root
   > 3. settings: go to src/shop/envs and select development.py
