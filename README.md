@@ -69,5 +69,5 @@ If you want to use Docker, follow these steps:
   > 2. Host: 0.0.0.0
   > 3. python interpereter: select Remote python Docker compose(that environment you created it)
 > [!NOTE]
-> before run docker you must add some file.
+> before run docker you must add some file in project root. create a directory with name scripts and create a file with name run.sh
 
