@@ -44,13 +44,14 @@ git clone https://github.com/ronin1777/Eccomerce-APi.git
   source .venv/bin/activate
   
   (.venv) $ pip install -r requirements.txt
+  (.venv) $ python manage.py makemigrations
   (.venv) $ python manage.py migrate
   (.venv) $ python manage.py createsuperuser
   (.venv) $ python manage.py runserver
   # Load the site at http://127.0.0.1:8000
   ```
   ### dokcer
-  First in project root Create a file named scripts and inside it create a file named run.sh with the same content:
+  First in project root Create a directory named scripts and inside it create a file named run.sh with the same content:
 ```
 #!/bin/sh
 
