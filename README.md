@@ -7,7 +7,8 @@ An E-commerce API built using Django Rest Framework.
 * [Features](https://github.com/ronin1777/H_dubbed/blob/main/README.md#features)
 * [technology](https://github.com/ronin1777/H_dubbed/blob/main/README.md#technology)
 * [Installation](https://github.com/ronin1777/H_dubbed/blob/main/README.md#setup-and-run)
-  - 
+  * [pip](https://github.com/ronin1777/Eccomerce-APi/blob/main/README.md#pip)
+  * [docker](https://github.com/ronin1777/Eccomerce-APi/blob/main/README.md#dokcer)
 
 # Introduction
 This is an e-commerce API built using Django REST Framework (DRF). It allows you to (CRUD) products, users, orders, and order items base on Entity-Attribute-Value Model.
