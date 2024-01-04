@@ -61,11 +61,11 @@ If you want to use Docker, follow these steps:
   > 3. sevice: select app
   > 4. Next and create
 * Enavle Django support(pycharm):
-  1. go to Languages & Frameworks and select Django
-  2. Django project root: select crs as root
-  3. settings: go to src/shop/envs and select development.py
+  > 1. go to Languages & Frameworks and select Django
+  > 2. Django project root: select crs as root
+  > 3. settings: go to src/shop/envs and select development.py
 * Run &Dbuge Configurations:
-  1. edit configuration add Djnago server
-  2. Host: 0.0.0.0
-  3. python interpereter: select Remote python Docker compose(that environment you created it)
+  > 1. edit configuration add Djnago server
+  > 2. Host: 0.0.0.0
+  > 3. python interpereter: select Remote python Docker compose(that environment you created it)
 
