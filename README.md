@@ -3,13 +3,13 @@
 An E-commerce API built using Django Rest Framework.
 
 # Table of Contents
-* [Introduction](https://github.com/ronin1777/Eccomerce-APi/blob/main/README.md#introduction)
-* [Features](https://github.com/ronin1777/H_dubbed/blob/main/README.md#features)
-* [technology](https://github.com/ronin1777/H_dubbed/blob/main/README.md#technology)
-* [Installation](https://github.com/ronin1777/H_dubbed/blob/main/README.md#setup-and-run)
-  * [pip](https://github.com/ronin1777/Eccomerce-APi/blob/main/README.md#pip)
-  * [docker](https://github.com/ronin1777/Eccomerce-APi/blob/main/README.md#dokcer)
-* [Next Steps]()
+* [Introduction](https://github.com/ronin1777/Eccomerce-APi/tree/main?tab=readme-ov-file#introduction)
+* [Features](https://github.com/ronin1777/Eccomerce-APi/tree/main?tab=readme-ov-file#features)
+* [technology](https://github.com/ronin1777/Eccomerce-APi/tree/main?tab=readme-ov-file#technology)
+* [Installation](https://github.com/ronin1777/Eccomerce-APi/tree/main?tab=readme-ov-file#installation)
+  * [pip](https://github.com/ronin1777/Eccomerce-APi/tree/main?tab=readme-ov-file#pip)
+  * [docker](https://github.com/ronin1777/Eccomerce-APi/tree/main?tab=readme-ov-file#dokcer)
+* [Next Steps](https://github.com/ronin1777/Eccomerce-APi/tree/main?tab=readme-ov-file#next-steps)
 
 # Introduction
 This is an e-commerce API built using Django REST Framework (DRF). It allows you to (CRUD) products, users, orders, and order items base on Entity-Attribute-Value Model.
